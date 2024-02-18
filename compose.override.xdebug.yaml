@@ -1,0 +1,15 @@
+version: "3.7"
+services:
+
+  app:
+    environment:
+      - APP_ENV=${APP_ENV}
+      - XDEBUG_SESSION=DOCKER_XDEBUG
+      #      - XDEBUG_MODE=coverage
+      - PHP_IDE_CONFIG=serverName=tfc_http
+
+    volumes:
+      - .:/var/www
+      - ./docker/app/conf/php.ini:/usr/local/etc/php/php.ini
+      - ./docker/app/conf/opcache.ini:/usr/local/etc/php/conf.d/opcache.ini
+      - ./docker/app/conf/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
