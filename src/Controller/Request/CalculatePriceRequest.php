@@ -5,11 +5,12 @@ namespace App\Controller\Request;
 use App\Validator\TaxCodeFormat;
 use Symfony\Component\Validator\Constraints as Assert;
 
-readonly class CalculatePriceRequest
+class CalculatePriceRequest
 {
     public function __construct(
         #[Assert\NotBlank]
-        public int $productId,
+        #[Assert\Type('integer')]
+        public $productId,
 
         #[Assert\NotBlank]
         #[TaxCodeFormat]

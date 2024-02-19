@@ -29,8 +29,8 @@ class ProductsPricesShowController extends AbstractController
             $requestData = json_decode($request->getContent(), true, 512, JSON_THROW_ON_ERROR);
 
             $calculatePriceRequest = new CalculatePriceRequest(
-                productId: $requestData['product'],
-                taxCode: $requestData['taxNumber'],
+                productId: $requestData['product'] ?? '',
+                taxCode: $requestData['taxNumber'] ?? '',
                 couponCode: $requestData['couponCode'] ?? null
             );
 
@@ -42,7 +42,7 @@ class ProductsPricesShowController extends AbstractController
             );
 
             if (0 < count($violations)) {
-                return $this->json($errors, Response::HTTP_BAD_REQUEST);
+                return $this->json(['errors' => $errors], Response::HTTP_BAD_REQUEST);
             }
 
             $productPrice = $this->calculatePriceService->execute(

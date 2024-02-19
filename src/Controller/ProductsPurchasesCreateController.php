@@ -45,7 +45,7 @@ class ProductsPurchasesCreateController extends AbstractController
             );
 
             if (0 < count($violations)) {
-                return $this->json($errors, Response::HTTP_BAD_REQUEST);
+                return $this->json(['errors' => $errors], Response::HTTP_BAD_REQUEST);
             }
 
             $paymentProcessorClass = sprintf(
