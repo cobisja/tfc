@@ -16,11 +16,6 @@ use PHPUnit\Framework\TestCase;
 
 class CalculatePriceServiceTest extends TestCase
 {
-
-    final public const PRODUCT_ID_FIXTURE = [10 => 100.00];
-    final public const TAX_CODE_FIXTURE = ['GR012345678' => 24.0];
-    final public const COUPON__CODE_FIXTURE = ['D6' => 6.0];
-
     private ProductRepository $productRepository;
     private TaxRepository $taxRepository;
     private CouponRepository $couponRepository;
