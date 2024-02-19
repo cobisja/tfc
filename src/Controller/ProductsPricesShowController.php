@@ -22,7 +22,7 @@ class ProductsPricesShowController extends AbstractController
     ) {
     }
 
-    #[Route('/calculate-price', name: 'api_products_calculate_price')]
+    #[Route('/calculate-price', name: 'api_products_calculate_price', methods: ['POST'])]
     public function __invoke(Request $request): JsonResponse
     {
         try {
