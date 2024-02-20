@@ -51,7 +51,7 @@ class ProductsPricesShowController extends AbstractController
                 couponCode: $requestData['couponCode'] ?? null
             );
 
-            return $this->json(['data'=>['price' => $productPrice]], Response::HTTP_OK);
+            return $this->json(['data' => ['price' => $productPrice]], Response::HTTP_OK);
         } catch (\JsonException) {
             return $this->json(['error' => 'Request payload malformed'], Response::HTTP_BAD_REQUEST);
         } catch (ProductNotFoundException|TaxCodeNotFoundException|CouponCodeNotFoundException $exception) {
