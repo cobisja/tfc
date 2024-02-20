@@ -9,7 +9,7 @@ use App\Repository\CouponRepository;
 use App\Repository\ProductRepository;
 use App\Repository\TaxRepository;
 
-readonly class CalculatePriceService
+class CalculatePriceService
 {
     public function __construct(
         private ProductRepository $productRepository,

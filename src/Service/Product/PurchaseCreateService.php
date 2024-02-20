@@ -24,10 +24,8 @@ readonly class PurchaseCreateService
         string $taxCode,
         ?string $couponCode = null
     ): bool {
-        $price = $this->calculatePriceService->execute($productId, $taxCode, $couponCode);
-
         return $paymentProcessor->pay(
-            200000
+            $this->calculatePriceService->execute($productId, $taxCode, $couponCode)
         );
     }
 }
