@@ -20,7 +20,7 @@ In order to build and run the code, your environment must have installed:
 To make things easier, a Makefile is provided with the code, so you can run the following command for start the building process
 
 ```
-$ make docker-build
+make docker-build
 ```
 
 ## Running the App
