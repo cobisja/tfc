@@ -28,13 +28,13 @@ $ make docker-build
 Once the building process finishes, you can run the App using the following command:
 
 ```
-$ make docker-up
+make docker-up
 ```
 
 If you want to use xDebug (installed in the Docker image), you can start the app using the command:
 
 ```
-$ docker-up-with-xdebug
+docker-up-with-xdebug
 ```
 
 You may feel that things are slow down because the overhead added by xDebug.
@@ -42,19 +42,19 @@ You may feel that things are slow down because the overhead added by xDebug.
 Then, you have to install all the composer packages required by the application:
 
 ```
-$ make composer install
+make composer install
 ```
 
 Next, you have to run the migrations:
 
 ```
-$ make symfony doctrine:migrations:migrate
+make symfony doctrine:migrations:migrate
 ```
 
 Finally, load the fixtures so you have data to play with:
 
 ```
-$ make symfony doctrine:fixtures:load
+make symfony doctrine:fixtures:load
 ```
 
 Once the environment is up and running, all the endpoints will be accessed using the host:
@@ -66,7 +66,7 @@ http://localhost:8000
 If you want see the whole set of commands available via the Makefile, you can run:
 
 ```
-$ make help
+make help
 ```
 
 ## Using the endpoints
@@ -78,7 +78,7 @@ The application defines 2 endpoints:
 You can test the endpoint using curl:
 
 ```
-$ curl -X POST -H "Content-Type: application/json" -d '{"product": 10,"taxNumber": "FRXY0123456789","couponCode": "P50"}' localhost:8000/calculate-price
+curl -X POST -H "Content-Type: application/json" -d '{"product": 10,"taxNumber": "FRXY0123456789","couponCode": "P50"}' localhost:8000/calculate-price
 ```
 
 If all request data are valid, the response of the request should be something like this:
@@ -91,7 +91,7 @@ If there is an invalid request data, the endpoint will return the HTTP code 400 
 
 ```
 // Here, the taxCode does not follow the expected format
-$ curl -X POST -H "Content-Type: application/json" -d '{"product": 10,"taxNumber": "FR0123456789","couponCode": "P50"}' localhost:8000/calculate-price
+curl -X POST -H "Content-Type: application/json" -d '{"product": 10,"taxNumber": "FR0123456789","couponCode": "P50"}' localhost:8000/calculate-price
 ```
 The response would be:
 
@@ -104,7 +104,7 @@ The response would be:
 You can test the endpoint using curl:
 
 ```
-$ curl -X POST -H "Content-Type: application/json" -d '{"product": 10,"taxNumber": "FRXY0123456789","couponCode": "P50", "paymentProcessor": "paypal"}' localhost:8000/purchase
+curl -X POST -H "Content-Type: application/json" -d '{"product": 10,"taxNumber": "FRXY0123456789","couponCode": "P50", "paymentProcessor": "paypal"}' localhost:8000/purchase
 ```
 
 If all request data are valid, the response of the request should be something like this:
@@ -120,7 +120,7 @@ If there is an invalid request data, the endpoint will return the HTTP code 400 
 
 ```
 // Here, the payment processor is not specified.
-$ curl -X POST -H "Content-Type: applicatioXY0123456789","couponCode": "P50"}' localhost:8000/purchase
+curl -X POST -H "Content-Type: applicatioXY0123456789","couponCode": "P50"}' localhost:8000/purchase
 ```
 The response would be:
 
@@ -130,7 +130,7 @@ The response would be:
 There are some additional validations on several fields. For instance, the only payment processors supported are "paypal", "stripe" and "redsys" (this one was added to show how easy is adding new payment processors). So, if an "unregistered" processor is provided:
 
 ```
-$ curl -X POST -H "Content-Type: application/json" -d '{"product": 10,"taxNumber": "FRXY0123456789","couponCode": "P50", "paymentProcessor": "datatrans"}' localhost:8000/purchase
+curl -X POST -H "Content-Type: application/json" -d '{"product": 10,"taxNumber": "FRXY0123456789","couponCode": "P50", "paymentProcessor": "datatrans"}' localhost:8000/purchase
 ```
 
 You will have the following response:
@@ -155,7 +155,7 @@ DATABASE_URL="postgresql://root:passwd@tfc_db:5432/tfc?serverVersion=16&charset=
 - Create a database for testing:
 
 ```
-$ APP_ENV=test make symfony doctrine:database:create
+APP_ENV=test make symfony doctrine:database:create
 ```
 A database named ```tfc_test``` will be created.
 
@@ -168,13 +168,13 @@ APP_ENV=test make symfony doctrine:migrations:migrate
 - Then, load the fixtures required:
 
 ```
-$ APP_ENV=test make symfony doctrine:fixtures:load
+APP_ENV=test make symfony doctrine:fixtures:load
 ```
 
 - Run the tests:
 
 ```
-$ make tests
+make tests
 ```
 
 Enjoy the App!
